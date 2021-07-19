@@ -2,7 +2,7 @@ import pygame
 from UI import *
 from pygame.locals import *
 from board import *
-
+from Events import *
 
 if __name__ == "__main__" :
     pygame.init()
@@ -11,6 +11,6 @@ if __name__ == "__main__" :
     while(1):
         draw(game,a)
         pygame.display.flip()
-        #event()
+        event()
         
         

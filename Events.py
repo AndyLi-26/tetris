@@ -1,5 +1,9 @@
+import pygame
+from pygame.locals import *
 def event():
     for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
         if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP:
             if event.key == pygame.K_UP:
                 print('up')
