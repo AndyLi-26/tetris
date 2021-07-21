@@ -2,9 +2,6 @@ import pygame
 from pygame.locals import *
 def draw_board(game,screen):
     border_line=Rect(int(0.3*x),int(0.1*y),int(0.4*x),int(0.8*y))
-    #draw border
-    #pygame.draw.rect(screen,Color(45,45,45),border_line,width=5,border_radius=5)
-    #draw grid
     for i in range(game.x+1):
         pygame.draw.line(screen,Color(45,45,45),(left+grid_size*i,up),(left+grid_size*i,up+game.y*grid_size),width=2)
     for i in range(game.y+1):
@@ -26,10 +23,13 @@ def draw_border(game,screen):
         pygame.draw.rect(screen,Color(255,100,100),tempRect,width=2)
         screen.fill(Color(100,255,100),tempRect)
         
-
-
 def draw_blocks(game,screen):
-    pass
+    for i in range(game.y):
+        for j in range(game.x):
+            tempRect=Rect(left+(grid_size)*j,up+grid_size*i,grid_size-1,grid_size-1)
+            temp=game.board[i][j]
+            pygame.draw.rect(screen,game.colors[temp],tempRect)
+            
 
 def draw(game,screen):
     global x,y,left,up,width,height,grid_size

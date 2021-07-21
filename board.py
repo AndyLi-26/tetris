@@ -1,6 +1,9 @@
 import random
+import pygame
+from pygame.locals import *
 class new_game:
     def __init__(self,x=12,y=20,tetriminos=[[[1, 1, 1, 1],[0,0,0,0]], [[2, 0, 0], [2, 2, 2]], [[0, 0, 3], [3, 3, 3]], [[4, 4], [4, 4]], [[0, 5, 5], [5, 5, 0]], [[0, 6, 0], [6, 6, 6]], [[7, 7, 0], [0, 7, 7]]]):
+        self.colors=[Color(149,160,166),Color(65,241,239),Color(13,23,235),Color(236,129,44),Color(230,229,57),Color(62,240,51),Color(156,20,235),Color(234,0,29)]
         self.tetriminos=tetriminos
         self.x,self.y=x,y
         self.board=[[0 for i in range(x)] for _ in range(y)]
