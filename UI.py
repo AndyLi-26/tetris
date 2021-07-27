@@ -27,7 +27,7 @@ def draw_blocks(game,screen):
     for i in range(game.y):
         for j in range(game.x):
             tempRect=Rect(left+(grid_size)*j,up+grid_size*i,grid_size-1,grid_size-1)
-            temp=game.board[i][j]
+            temp=int(game.board[i][j])
             pygame.draw.rect(screen,game.colors[temp],tempRect)
             
 

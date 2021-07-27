@@ -30,13 +30,13 @@ class new_game:
                     if self.board[l+i][j] and self.tetriminos[i][j]:
                         return 1
             return 0
-        tx,ty=(self.tetriminos[t][0]),len(self.tetriminos[t])
-        l=(self.x-tx-1)//2   #left
+        tx,ty=len(self.tetriminos[t][0]),len(self.tetriminos[t])
+        l=(self.x-tx)//2   #left
         for i in range(self.x//2+1):
-            a,b=l+i.l-i
-            if not over_lap(x,a):
+            a,b=l+i,l-i
+            if not over_lap(self.x,ty,a):
                 c=a
-            elif not over_lap(x,b):
+            elif not over_lap(self.x,ty,b):
                 c=b
             else:
                 c=0
@@ -52,17 +52,23 @@ class new_game:
         def fix():
             for i in range(ty):
                 for j in range(tx):
-                    if self.board[self.cord[l+j]][self.card[2+i]]:
+                    if self.board[self.cord[l+j]][self.cord[2+i]]:
                         self.board=str(self.board)
         #check:
+        tx,ty=len(self.tetriminos[self.falling][0]),len(self.tetriminos[self.falling])
+        l,b=self.cord
         for i in range(tx):
-            if not self.board[self.cord[1]+1][l+i] and self.tetriminos[self.falling][-1][i]:
+            if b==ty or (self.board[b+1][l+i] and self.tetriminos[self.falling][-1][i]):
                 fix()
+                self.falling=0
                 break
         for i in range(ty):
             for j in range(tx):
-                if self.board:
-                    pass
+                self.board[b-i+1][l+j]=self.board[b-i][l+j]
+        for j in range(tx):
+            self.board[b-i][l+j]=0
+        self.cord=(l,b+1)
+                    
         
     def gg(self):
         pass
@@ -89,13 +95,17 @@ class new_game:
             else:
                 self.socre=2**(count-1)*100
                 combo=1
-        
+    def test(self):
+        self.spawn(0)
     def __str__(self):
         s='[XXXXXXXXXXXX]\n'
         for i in self.board:
             s+='['
             for j in i:
-                s+=str(j)
+                if int(j)==j:
+                    s+=' '+str(j)+' '
+                else:
+                    s+="'"+j+"'"
             s+=']\n'
         s+='[XXXXXXXXXXXX]'
         return s

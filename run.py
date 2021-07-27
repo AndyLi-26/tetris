@@ -1,16 +1,19 @@
 import pygame
 from UI import *
 from pygame.locals import *
-from board import *
+from game import *
 from Events import *
 
 if __name__ == "__main__" :
     pygame.init()
-    game=new_game()
+    crt_game=new_game()
     a=pygame.display.set_mode((1000,700))
     while(1):
-        draw(game,a)
+        draw(crt_game,a)
         pygame.display.flip()
+        pygame.time.delay(100)
         event()
+        #crt_game.test()
+        crt_game.tick()
         
         
