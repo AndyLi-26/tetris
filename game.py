@@ -50,23 +50,26 @@ class new_game:
         
     def fall(self):
         def fix():
+            self.falling=0
             for i in range(ty):
                 for j in range(tx):
-                    if self.board[self.cord[l+j]][self.cord[2+i]]:
-                        self.board=str(self.board)
+                    y,x=self.cord[1]-1-i,self.cord[0]+j
+                    if self.board[y][x]:
+                        self.board[y][x]=str(self.board[y][x])
         #check:
         tx,ty=len(self.tetriminos[self.falling][0]),len(self.tetriminos[self.falling])
         l,b=self.cord
+        if b==self.y:
+            fix()
         for i in range(tx):
-            if b==ty or (self.board[b+1][l+i] and self.tetriminos[self.falling][-1][i]):
+            if (self.board[b][l+i] and self.tetriminos[self.falling][-1][i]):
                 fix()
-                self.falling=0
                 break
         for i in range(ty):
             for j in range(tx):
-                self.board[b-i+1][l+j]=self.board[b-i][l+j]
+                self.board[b-i][l+j]=self.board[b-i-1][l+j]
         for j in range(tx):
-            self.board[b-i][l+j]=0
+            self.board[b-i-1][l+j]=0
         self.cord=(l,b+1)
                     
         
